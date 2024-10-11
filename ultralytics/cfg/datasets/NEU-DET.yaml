@@ -1,0 +1,14 @@
+path: E:/Projects/YOLOV8/NEU-DET # 注意修改自己NEU-DET数据集的路径
+train: train/images  # train images
+val: valid/images  # val images
+test: test/images  # test images
+
+# Classes
+
+names:
+  0: crazing
+  1: inclusion
+  2: patches
+  3: pitted_surface
+  4: rolled-in_scale
+  5: scratches
