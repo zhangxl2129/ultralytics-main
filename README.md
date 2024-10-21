@@ -278,6 +278,7 @@ For Ultralytics bug reports and feature requests please visit [GitHub Issues](ht
 </div>
 
 ## <div align="center">个人项目介绍</div>
+<div>
 本项目应用于金属表面的缺陷检测
 大语言模型下的图像缺陷检测技术的实现
 
@@ -307,5 +308,5 @@ YOLO对标同环境配置下的UNet经典模型，横向对比判断模型优劣
   #0.7398933240589208 0.8794333157697425 0.8352304672193059
   #0.7402450226560389 0.8848863848684957 0.8365618654226482   -- mIOU 0.82
 通过交并混合IOU的测试对比，我们可以发现本项目的平均识别准确率相比经典UNet网络模型提升了0.07
-
-数据集下载：通过百度网盘分享的文件：trainingr.zip链接：https://pan.baidu.com/s/1gA3fHWneXgnpWwKnvG75NA?pwd=o0f3 提取码：o0f3
+</div>
+<div>数据集下载：通过百度网盘分享的文件：trainingr.zip链接：https://pan.baidu.com/s/1gA3fHWneXgnpWwKnvG75NA?pwd=o0f3 提取码：o0f3</div>
