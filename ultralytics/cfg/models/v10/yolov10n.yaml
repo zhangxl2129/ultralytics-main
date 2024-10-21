@@ -2,10 +2,24 @@
 # YOLOv10 object detection model. For Usage examples see https://docs.ultralytics.com/tasks/detect
 
 # Parameters
-nc: 80 # number of classes
+nc: 4 # number of classes
 scales: # model compound scaling constants, i.e. 'model=yolov10n.yaml' will call yolov10.yaml with scale 'n'
   # [depth, width, max_channels]
   n: [0.33, 0.25, 1024]
+
+train:
+  augment:
+    degrees: 5.0 # 增加旋转角度到 10 度
+    translate: 0.1 # 平移的范围从 10% 增加到 20%
+    shear: 1.0    # 增加剪切变换
+    scale: [0.5, 1.5]  # 缩放比例，从50%到150%
+    mosaic: 1.0  # 使用 mosaic 增强
+    random_perspective: 0.5  # 增加随机透视变换
+    hsv_h: 0.015  # 色调变化
+    hsv_s: 0.7  # 饱和度变化
+    hsv_v: 0.4  # 明度变化
+    cutout: 0.1  # 在10%的图片区域上使用遮盖增强
+
 
 backbone:
   # [from, repeats, module, args]

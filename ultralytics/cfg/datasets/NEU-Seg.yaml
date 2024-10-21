@@ -1,0 +1,36 @@
+# 数据集的路径配置
+path: E:/Projects/YOLOV10/NEU-Seg-New  # 数据集根目录
+
+train: train/images  # 训练集图像目录
+val: valid/images  # 验证集图像目录
+test: test/images  # 测试集图像目录
+
+# 掩码文件路径（存放.png格式的分割掩码）
+masks:
+  train: train/masks  # 训练集掩码文件目录
+  val: valid/masks  # 验证集掩码文件目录
+  test: test/masks  # 测试集掩码文件目录
+
+# 标签路径 (YOLO格式的边界框，.txt格式)
+labels:
+  train: train/labels  # 训练集标签文件目录
+  val: valid/labels  # 验证集标签文件目录
+  test: test/labels  # 测试集标签文件目录
+
+# Classes (分类名称)
+names:
+  0: background  # 类别0
+  1: Inclusions  # 类别1
+  2: Patches     # 类别2
+  3: Scratches   # 类别3
+
+#path: E:/Projects/YOLOV10/NEU-Seg # 注意修改自己NEU-Seg数据集的路径
+#train: train/images  # train images
+#val: valid/images  # val images
+#test: test/images  # test images
+#
+## Classes
+#names:
+#  0: Inclusions
+#  1: Patches
+#  2: Scratches
