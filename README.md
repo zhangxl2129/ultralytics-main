@@ -276,3 +276,36 @@ For Ultralytics bug reports and feature requests please visit [GitHub Issues](ht
   <img src="https://github.com/ultralytics/assets/raw/main/social/logo-transparent.png" width="3%" alt="space">
   <a href="https://discord.com/invite/ultralytics"><img src="https://github.com/ultralytics/assets/raw/main/social/logo-social-discord.png" width="3%" alt="Ultralytics Discord"></a>
 </div>
+
+## <div align="center">个人项目介绍</div>
+本项目应用于金属表面的缺陷检测
+大语言模型下的图像缺陷检测技术的实现
+
+网络模型：YOLOv10 vs UNet                
+
+数据集大小：训练集：3400   验证集：120   测试集：840
+数据格式：	200*200像素 || 包含三类金属缺陷![image](https://github.com/user-attachments/assets/5a5e5563-e95a-4d4f-af06-66ad6d77a6f4)
+![image](https://github.com/user-attachments/assets/939823c1-304b-438b-8d53-f8c5c9ea9368)
+通过训练出的网络模型进行测试，计算其P、R、class_IOU、mIOU、FPS等性能指标评估模型优劣
+
+YOLO对标同环境配置下的UNet经典模型，横向对比判断模型优劣
+![image](https://github.com/user-attachments/assets/c72525c9-b6f8-403f-ab0f-6530b772d02a)
+![image](https://github.com/user-attachments/assets/a3d4b4b6-1ec7-452b-ad4b-794928518650)
+通过训练出的网络模型进行测试，计算其P、R、class_IOU、mIOU、FPS等性能指标评估模型优劣
+
+YOLO对标同环境配置下的UNet经典模型，横向对比判断模型优劣
+![image](https://github.com/user-attachments/assets/92f22d23-6019-4ca1-9cbc-5a40696cf9a6)
+![image](https://github.com/user-attachments/assets/9f2551e8-2547-4726-9493-5ec5991ac779)
+
+本模型和UNet经典网络模型最新的性能对比结果：
+  #0.5215111364407009 0.7245207416307832 0.5491102116647867 13  36
+  #0.6585676173061354 0.8357125632769099 0.7407291079282734 UNet 的 IOU -- mIOU 0.75
+  #0.6458035706316883 0.8449470447495435 0.7391515444402353
+  #0.6518431611826072 0.8514878966310536 0.7424705997266193   -- mIOU 0.75
+  
+  #0.753794664940869 0.8682609032773725 0.8331920379862269 YOLO10n 的 IOU -- mIOU 0.82
+  #0.7398933240589208 0.8794333157697425 0.8352304672193059
+  #0.7402450226560389 0.8848863848684957 0.8365618654226482   -- mIOU 0.82
+通过交并混合IOU的测试对比，我们可以发现本项目的平均识别准确率相比经典UNet网络模型提升了0.07
+
+数据集下载：通过百度网盘分享的文件：trainingr.zip链接：https://pan.baidu.com/s/1gA3fHWneXgnpWwKnvG75NA?pwd=o0f3 提取码：o0f3
