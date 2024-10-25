@@ -268,18 +268,18 @@ For Ultralytics bug reports and feature requests please visit [GitHub Issues](ht
 
 网络模型：YOLOv10 vs UNet                
 
-<div>数据集大小：训练集：3400   验证集：120   测试集：840
-数据格式：	200*200像素 || 包含三类金属缺陷</div>
+数据集大小：训练集：3400   验证集：120   测试集：840
+数据格式：	200*200像素 || 包含三类金属缺陷
 ![image](https://github.com/user-attachments/assets/5a5e5563-e95a-4d4f-af06-66ad6d77a6f4)
 ![image](https://github.com/user-attachments/assets/939823c1-304b-438b-8d53-f8c5c9ea9368)
 <div>通过训练出的网络模型进行测试，计算其P、R、class_IOU、mIOU、FPS等性能指标评估模型优劣</div>
 
-<div>YOLO对标同环境配置下的UNet经典模型，横向对比判断模型优劣</div>
+YOLO对标同环境配置下的UNet经典模型，横向对比判断模型优劣
 ![image](https://github.com/user-attachments/assets/c72525c9-b6f8-403f-ab0f-6530b772d02a)
 ![image](https://github.com/user-attachments/assets/a3d4b4b6-1ec7-452b-ad4b-794928518650)
 <div>通过训练出的网络模型进行测试，计算其P、R、class_IOU、mIOU、FPS等性能指标评估模型优劣</div>
 
-<div>YOLO对标同环境配置下的UNet经典模型，横向对比判断模型优劣</div>
+YOLO对标同环境配置下的UNet经典模型，横向对比判断模型优劣
 ![image](https://github.com/user-attachments/assets/92f22d23-6019-4ca1-9cbc-5a40696cf9a6)
 ![image](https://github.com/user-attachments/assets/9f2551e8-2547-4726-9493-5ec5991ac779)
 
