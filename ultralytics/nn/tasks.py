@@ -5,7 +5,7 @@ import pickle
 import types
 from copy import deepcopy
 from pathlib import Path
-
+from .Addmodules import *
 import torch
 import torch.nn as nn
 
@@ -60,6 +60,7 @@ from ultralytics.nn.modules import (
     Segment,
     WorldDetect,
     v10Detect,
+    SEConv,
 )
 from ultralytics.utils import DEFAULT_CFG_DICT, DEFAULT_CFG_KEYS, LOGGER, colorstr, emojis, yaml_load
 from ultralytics.utils.checks import check_requirements, check_suffix, check_yaml
@@ -955,6 +956,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
     ch = [ch]
     layers, save, c2 = [], [], ch[-1]  # layers, savelist, ch out
     for i, (f, n, m, args) in enumerate(d["backbone"] + d["head"]):  # from, number, module, args
+        print(f"Layer {i}: from={f}, ch length={len(ch)}")
         m = getattr(torch.nn, m[3:]) if "nn." in m else globals()[m]  # get module
         for j, a in enumerate(args):
             if isinstance(a, str):
@@ -996,6 +998,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             PSA,
             SCDown,
             C2fCIB,
+            SPDConv,
         }:
             c1, c2 = ch[f], args[0]
             if c2 != nc:  # if c2 not equal to number of classes (i.e. for Classify() output)
@@ -1027,6 +1030,11 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
                 n = 1
             if m is C3k2 and scale in "mlx":  # for M/L/X sizes
                 args[3] = True
+        elif m is SEConv:
+            c1, c2 = ch[f], args[0]  # 获取输入和输出通道
+            kernel_size = args[1] if len(args) > 1 else 3  # 默认值
+            stride = args[2] if len(args) > 2 else 1  # 默认值
+            args = [c1, c2, kernel_size, stride]  # 更新 args
         elif m is AIFI:
             args = [ch[f], *args]
         elif m in {HGStem, HGBlock}:
@@ -1041,7 +1049,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             args = [ch[f]]
         elif m is Concat:
             c2 = sum(ch[x] for x in f)
-        elif m in {Detect, WorldDetect, Segment, Pose, OBB, ImagePoolingAttn, v10Detect}:
+        elif m in {Detect, WorldDetect, Segment, Pose, OBB, ImagePoolingAttn, v10Detect }:
             args.append([ch[x] for x in f])
             if m is Segment:
                 args[2] = make_divisible(min(args[2], max_channels) * width, 8)
