@@ -85,6 +85,7 @@ from .transformer import (
     TransformerEncoderLayer,
     TransformerLayer,
 )
+from .custom_layers import SEConv
 
 __all__ = (
     "Conv",
@@ -156,4 +157,5 @@ __all__ = (
     "C2fCIB",
     "Attention",
     "PSA",
+    "SEConv",
 )
