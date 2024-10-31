@@ -2,7 +2,7 @@
  
 一、部署实现：  
     1、下载数据集  
-      <div>通过百度网盘分享的文件：trainingr.zip链接：https://pan.baidu.com/s/1gA3fHWneXgnpWwKnvG75NA?pwd=o0f3 提取码：o0f3</div>  
+      <div>通过百度网盘分享的文件：trainingr.zip链接：https://pan.baidu.com/s/1gA3fHWneXgnpWwKnvG75NA?pwd=o0f3 提取码：o0f3</div>
     2、将程序代码下载至本地，并存储于数据集同级目录下。（为防止以外报错，建议最好存储于英文路径）  
     3、通过environment.yml一键安装程序运行环境。  
     4、运行train.py 进行模型训练 test.py进行模型测试  
