@@ -56,7 +56,7 @@ def create_markdown(py_filepath: Path, module_path: str, classes: list, function
     module_path = module_path.replace(".", "/")
     url = f"https://github.com/{GITHUB_REPO}/blob/main/{module_path}.py"
     edit = f"https://github.com/{GITHUB_REPO}/edit/main/{module_path}.py"
-    pretty = url.replace("__init__.py", "\\_\\_init\\_\\_.py")  # properly display __init__.py filenames
+    pretty = url.replace("AA__init__.py", "\\_\\_init\\_\\_.py")  # properly display AA__init__.py filenames
     title_content = (
         f"# Reference for `{module_path}.py`\n\n"
         f"!!! note\n\n"

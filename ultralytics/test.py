@@ -4,22 +4,11 @@ import time
 import numpy as np
 import torch
 from ultralytics import YOLO
-from PIL import Image
+from mode import CustomYOLO
 
 warnings.filterwarnings('ignore')
 
-
 def convert_boxes_to_npy(boxes, img_size=(200, 200)):
-    """
-    Convert bounding boxes to a numpy array of shape (200, 200).
-
-    Args:
-        boxes: Array of bounding boxes in format (n, 5) where each box is [x_center, y_center, width, height, class].
-        img_size: Size of the output array.
-
-    Returns:
-        np.ndarray: Array of shape (200, 200) with uint8 type.
-    """
     # Create an empty image with background class
     mask = np.zeros(img_size, dtype=np.uint8)
 
@@ -36,23 +25,21 @@ def convert_boxes_to_npy(boxes, img_size=(200, 200)):
 
     return mask
 
-
 if __name__ == '__main__':
     # Load the best model weights
-    best_model = 'runs/detect/train16/weights/best.pt'  # Change to your model path
-    model = YOLO(best_model)
+    best_model = 'runs/detect/train34/weights/best.pt'  # Change to your model path 18
+    model = CustomYOLO(best_model)
 
-    # Create a directory to save predictions
-    predict_dir = 'E:/Projects/YOLOV10/predict'
-    os.makedirs(predict_dir, exist_ok=True)
-
-    # Validation dataset image path
-    val_dataset = 'E:/Projects/YOLOV10/NEU-Seg-New/test/images'
-    image_files = [os.path.join(val_dataset, img) for img in os.listdir(val_dataset) if img.endswith('.jpg')]
+    # Convert to .pth
+    torch.save(model.state_dict(), 'E:/Projects/YOLOV10/ultralytics-main/ultralytics/runs/detect/train18/weights/mode.pth')
 
     # Save predictions directory
     save_dir = 'E:/Projects/YOLOV10/NEU-Seg-New/test/predictions/'  # Change to your desired save path
     os.makedirs(save_dir, exist_ok=True)
+
+    # Validation dataset image path
+    val_dataset = 'E:/Projects/YOLOV10/NEU-Seg-New/test/images'
+    image_files = [os.path.join(val_dataset, img) for img in os.listdir(val_dataset) if img.endswith('.jpg')]
 
     total_time = 0  # For calculating FPS
     for img_path in image_files:
@@ -76,30 +63,19 @@ if __name__ == '__main__':
             # Ensure class_ids are integers
             class_ids = class_ids.astype(np.int32)
 
-            # Add one to class_ids to ensure classes start from 1 (background remains 0)
-            #class_ids += 1
-
-            # Check if we have only 0s and 1s
-            print("Unique class ids in this image:", np.unique(class_ids))
-
             boxes_with_class = np.hstack((boxes_xywh[:, :4], class_ids.reshape(-1, 1)))
 
             # Convert each box to a shape of (200, 200) array
             mask = convert_boxes_to_npy(boxes_with_class, img_size=(200, 200))
             npy_file_path = os.path.join(save_dir, os.path.basename(img_path).replace('.jpg', '.npy'))
-
             np.save(npy_file_path, mask)  # Save as numpy format
-            print(f"Prediction saved for image: {img_path} as {npy_file_path}.")
 
-    # Calculate FPS
-    total_images = len(image_files)
-    fps = total_images / total_time
-    print(f"FPS (Frames per second): {fps}")
+    # Calculate and print FPS
+    fps = len(image_files) / total_time if total_time > 0 else 0
+    print(f'FPS: {fps:.2f}')
+    #torch.save(model.state_dict(), 'E:\\Projects\\YOLOV10\\ultralytics-main\\ultralytics\\runs\\model.pth')
 
-    # Calculate the number of model parameters
-    model_parameters = filter(lambda p: p.requires_grad, model.model.parameters())
-    param_count = sum([np.prod(p.size()) for p in model_parameters])
-    print(f"Model parameter count: {param_count}")
+
 
 # import os
 # import warnings
