@@ -7,6 +7,12 @@
     2、将程序代码下载至本地，并存储于数据集同级目录下。（为防止以外报错，建议最好存储于英文路径）  
     3、通过environment.yml一键安装程序运行环境。  
     4、运行train.py 进行模型训练 test.py进行模型测试  
+    
+便捷实现， 优点，不需要进行配置操作，下载即用  缺点：不够灵活,且占用大量空间  
+
+   通过百度网盘分享的文件：AI 
+   链接：https://pan.baidu.com/s/1_esFwSwl6A7SkOhrACHnfg?pwd=xnyr 
+   提取码：xnyr
   
 二、对标经典UNet网络模型的性能提升
 
