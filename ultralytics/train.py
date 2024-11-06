@@ -3,22 +3,10 @@ import torch
 from ultralytics import YOLO
 
 warnings.filterwarnings('ignore')
-from mode import CustomYOLO, train_params
-
-# if __name__ == '__main__':
-#     #model = CustomYOLO('ultralytics/cfg/models/v10/yolov10n.yaml')  # 指定YOLO模型对象，并加载指定配置文件中的模型配置
-#     model = CustomYOLO()  # 指定YOLO模型对象，并加载指定配置文件中的模型配置
-#     #model.load('yolov8s.pt')  # 加载预训练的权重文件'yolov8s.pt'，加速训练并提升模型性能
-#     # 使用绝对路径确认数据集文件存在
-#     model.train(data='E:\\Projects\\YOLOV10\\ultralytics-main\\ultralytics\\cfg\\datasets\\NEU-Seg.yaml', **train_params)
-#     torch.save(model.state_dict(), 'E:\\Projects\\YOLOV10\\ultralytics-main\\ultralytics\\runs\\model.pth')
-
-
-
 if __name__ == '__main__':
     model = YOLO('ultralytics/cfg/models/11/yolo11-SPDConv.yaml')  # 指定YOLO模型对象，并加载指定配置文件中的模型配置
     #model.load('yolov8s.pt')  # 加载预训练的权重文件'yolov8s.pt'，加速训练并提升模型性能
-    model.train(data='ultralytics/cfg/datasets/NEU-Seg.yaml',  # 指定训练数据集的配置文件路径，这个.yaml文件包含了数据集的路径和类别信息
+    model.train(data='ultralytics/cfg/datasets/NEU-Seg-DataB.yaml',  # 指定训练数据集的配置文件路径，这个.yaml文件包含了数据集的路径和类别信息
                 cache='disk',
                 imgsz=512,
                 epochs=300,
@@ -33,5 +21,4 @@ if __name__ == '__main__':
                 weight_decay=5e-4,  # 权重衰减
                 #pretrained='runs/detect/train18/weights/best.pt' , # 加载之前的最佳模型权重
                 )
-    #torch.save(model, 'E:\\Projects\\YOLOV10\\ultralytics-main\\ultralytics\\runs\\model.pth')
     torch.save(model.state_dict(), 'E:\\Projects\\YOLOV10\\ultralytics-main\\ultralytics\\runs\\model.pth')

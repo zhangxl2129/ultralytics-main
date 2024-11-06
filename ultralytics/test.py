@@ -31,7 +31,7 @@ if __name__ == '__main__':
     model = CustomYOLO(best_model)
 
     # Convert to .pth
-    torch.save(model.state_dict(), 'E:/Projects/YOLOV10/ultralytics-main/ultralytics/runs/detect/train18/weights/mode.pth')
+    torch.save(model.state_dict(), 'E:/Projects/YOLOV10/mode.pth')
 
     # Save predictions directory
     save_dir = 'E:/Projects/YOLOV10/NEU-Seg-New/test/predictions/'  # Change to your desired save path
@@ -73,7 +73,7 @@ if __name__ == '__main__':
     # Calculate and print FPS
     fps = len(image_files) / total_time if total_time > 0 else 0
     print(f'FPS: {fps:.2f}')
-    #torch.save(model.state_dict(), 'E:\\Projects\\YOLOV10\\ultralytics-main\\ultralytics\\runs\\model.pth')
+
 
 
 
