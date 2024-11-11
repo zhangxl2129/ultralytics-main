@@ -13,11 +13,13 @@ scales: # model compound scaling constants, i.e. 'model=yolo11n.yaml' will call 
 
 train:
   augment:
-    degrees: 5.0 # 增加旋转角度到 10 度
-    translate: 0.1 # 平移的范围从 10% 增加到 20%
+    degrees: 90.0 # 增加旋转角度到 10 度
+    translate: 0.2 # 平移的范围从 10% 增加到 20%
     shear: 1.0    # 增加剪切变换
     scale: [0.5, 1.5]  # 缩放比例，从50%到150%
     mosaic: 1.0  # 使用 mosaic 增强
+    fliplr: 0.8
+    flipud: 0.5
     random_perspective: 0.5  # 增加随机透视变换
     hsv_h: 0.015  # 色调变化
     hsv_s: 0.7  # 饱和度变化

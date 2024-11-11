@@ -27,18 +27,15 @@ def convert_boxes_to_npy(boxes, img_size=(200, 200)):
 
 if __name__ == '__main__':
     # Load the best model weights
-    best_model = 'runs/detect/train34/weights/best.pt'  # Change to your model path 18
+    best_model = 'runs/detect/train39/weights/best.pt'  # Change to your model path 18
     model = CustomYOLO(best_model)
 
-    # Convert to .pth
-    torch.save(model.state_dict(), 'E:/Projects/YOLOV10/mode.pth')
-
     # Save predictions directory
-    save_dir = 'E:/Projects/YOLOV10/NEU-Seg-New/test/predictions/'  # Change to your desired save path
+    save_dir = 'E:\Projects\YOLOV10\DataB_Pre/predictions/'  # Change to your desired save path
     os.makedirs(save_dir, exist_ok=True)
 
     # Validation dataset image path
-    val_dataset = 'E:/Projects/YOLOV10/NEU-Seg-New/test/images'
+    val_dataset = 'E:\Projects\YOLOV10\DataB_Pre\\test\images'
     image_files = [os.path.join(val_dataset, img) for img in os.listdir(val_dataset) if img.endswith('.jpg')]
 
     total_time = 0  # For calculating FPS
