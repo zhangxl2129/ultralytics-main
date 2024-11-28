@@ -9,11 +9,11 @@ if __name__ == '__main__':
     model.train(data='ultralytics/cfg/datasets/NEU-Seg-DataB.yaml',  # 指定训练数据集的配置文件路径，这个.yaml文件包含了数据集的路径和类别信息
                 cache='disk',
                 imgsz=512,
-                epochs=800,
+                epochs=300,
                 batch=32,
                 close_mosaic=64,
                 workers=16,
-                #patience=30,
+                patience=30,
                 optimizer='SGD',
                 lr0=0.01,  # 初始学习率
                 lrf=0.2,  # 最终学习率为初始学习率的 20%
