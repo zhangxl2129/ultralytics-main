@@ -6,21 +6,32 @@
 
 祝贺： 本项目取得2024年 第六届全球校园人工智能算法精英大赛 研究生组 国家三等奖。 2024-11-14
  
-一、部署实现：  
--------
--
+一、部署实现：
+====
+##方式1：pip
+==
+    1、安装ulrealytics YOLO库|源程序
+        pip install ultralytics 
+    2、通过以下命令直接获取到spdconv库
+        pip install spdconv==0.1.0
+
+##方式2：下载源代码
+==
     1、下载数据集  
       <div>通过百度网盘分享的文件：trainingr.zip链接：https://pan.baidu.com/s/1gA3fHWneXgnpWwKnvG75NA?pwd=o0f3 提取码：o0f3</div>
     2、将程序代码下载至本地，并存储于数据集同级目录下。（为防止以外报错，建议最好存储于英文路径）  
     3、通过environment.yml一键安装程序运行环境。  
     4、运行train.py 进行模型训练 test.py进行模型测试  
-    
+
+##方式3：下载可执行程序
+==
 便捷实现， 优点，不需要进行配置操作，下载即用  缺点：不够灵活,且占用大量空间  
 
    通过百度网盘分享的文件：AI 
    链接：https://pan.baidu.com/s/1_esFwSwl6A7SkOhrACHnfg?pwd=xnyr 
    提取码：xnyr
 
+-------
 竞赛官网：[钢材表面缺陷检测与分割竞赛](http://bdc.saikr.com/vse/50185)
 
 ![image](https://github.com/user-attachments/assets/070da04c-448e-49da-a65a-9edc9ceaae2c)
