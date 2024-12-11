@@ -5,10 +5,8 @@ import pickle
 import types
 from copy import deepcopy
 from pathlib import Path
-from .Addmodules import *
 import torch
 import torch.nn as nn
-
 from ultralytics.nn.modules import (
     AIFI,
     C1,
@@ -62,6 +60,10 @@ from ultralytics.nn.modules import (
     v10Detect,
     SEConv,
 )
+from ultralytics.nn.Addmodules.WTConv import C3k2_WT
+from ultralytics.nn.Addmodules.SPDConv import SPDConv
+
+
 from ultralytics.utils import DEFAULT_CFG_DICT, DEFAULT_CFG_KEYS, LOGGER, colorstr, emojis, yaml_load
 from ultralytics.utils.checks import check_requirements, check_suffix, check_yaml
 from ultralytics.utils.loss import (
@@ -83,6 +85,7 @@ from ultralytics.utils.torch_utils import (
     scale_img,
     time_sync,
 )
+
 
 try:
     import thop
@@ -999,6 +1002,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             SCDown,
             C2fCIB,
             SPDConv,
+            C3k2_WT,
         }:
             c1, c2 = ch[f], args[0]
             if c2 != nc:  # if c2 not equal to number of classes (i.e. for Classify() output)
@@ -1015,7 +1019,7 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
                 C1,
                 C2,
                 C2f,
-                C3k2,
+                C3k2,C3k2_WT,
                 C2fAttn,
                 C3,
                 C3TR,
@@ -1061,6 +1065,8 @@ def parse_model(d, ch, verbose=True):  # model_dict, input_channels(3)
             args = [c1, c2, *args[1:]]
         elif m is CBFuse:
             c2 = ch[f[-1]]
+        elif m is SPDConv:
+            c2 =4 * ch[f]
         else:
             c2 = ch[f]
 

@@ -11,7 +11,8 @@ from torch.nn.init import constant_, xavier_uniform_
 from ultralytics.utils.tal import TORCH_1_10, dist2bbox, dist2rbox, make_anchors
 
 from .block import DFL, BNContrastiveHead, ContrastiveHead, Proto
-from .conv import Conv, DWConv
+from .conv import Conv
+from ultralytics.nn.Addmodules.WTConv import DSConvWithWT # 延迟导入 解决循环依赖问题
 from .transformer import MLP, DeformableTransformerDecoder, DeformableTransformerDecoderLayer
 from .utils import bias_init_with_prob, linear_init
 
@@ -32,6 +33,7 @@ class Detect(nn.Module):
     def __init__(self, nc=80, ch=()):
         """Initializes the YOLOv8 detection layer with specified number of classes and channels."""
         super().__init__()
+
         self.nc = nc  # number of classes
         self.nl = len(ch)  # number of detection layers
         self.reg_max = 16  # DFL channels (ch[0] // 16 to scale 4/8/12/16/20 for n/s/m/l/x)
@@ -43,8 +45,8 @@ class Detect(nn.Module):
         )
         self.cv3 = nn.ModuleList(
             nn.Sequential(
-                nn.Sequential(DWConv(x, x, 3), Conv(x, c3, 1)),
-                nn.Sequential(DWConv(c3, c3, 3), Conv(c3, c3, 1)),
+                nn.Sequential(DSConvWithWT(x, x, 3), Conv(x, c3, 1)),
+                nn.Sequential(DSConvWithWT(c3, c3, 3), Conv(c3, c3, 1)),
                 nn.Conv2d(c3, self.nc, 1),
             )
             for x in ch

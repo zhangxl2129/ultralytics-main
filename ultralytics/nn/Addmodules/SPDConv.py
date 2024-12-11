@@ -34,4 +34,3 @@ class SPDConv(nn.Module):
         """Perform transposed convolution of 2D data."""
         x = torch.cat([x[..., ::2, ::2], x[..., 1::2, ::2], x[..., ::2, 1::2], x[..., 1::2, 1::2]], 1)
         return self.act(self.conv(x))
-
