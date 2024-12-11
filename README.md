@@ -1,10 +1,7 @@
-基于YOLO11+SPD-Conv的钢材表面缺陷检测
+基于YOLO11+SPD-Conv+WTConv的钢材表面缺陷检测
 ===
-本项目是参加钢材表面缺陷检测与分割竞赛的解决方案，旨在通过深度学习技术实现高效的钢材表面缺陷检测和分割。
+YOLO11+SPD-Conv+WTConv作为参加钢材表面缺陷检测的解决方案，旨在通过深度学习技术实现准确高效的钢材表面缺陷检测。
 ------- 
-祝贺： 本项目取得全球AI人工智能大赛四川赛区第4名的好成绩成绩，目前成功挺进国赛。 2024-11-4
-
-祝贺： 本项目取得2024年 第六届全球校园人工智能算法精英大赛 研究生组 国家三等奖。 2024-11-14
  
 一、部署实现：
 ====
@@ -12,8 +9,13 @@
 ==
     1、安装ulrealytics YOLO库|源程序
         pip install ultralytics 
-    2、通过以下命令直接获取到spdconv库
-        pip install spdconv==0.1.0
+    2、通过以下命令获取作者创新的模块 SPDConv、WTConv
+        pip install xl-yolo-pkg
+         SPDConv
+           这是用于 YOLO 模型的自定义 SPDConv 模块，旨在提高特定任务的性能。 一种新的卷积神经网络构建SPD-Conv，旨在解决低分辨率或小目标任务中的性能下降问题。通过替换步幅卷积和池化层，SPD-Conv保持了细粒度信息，提高了特征学习效率
+         WTConv
+           这是用于 YOLO 模型的自定义 WTConv 模块，旨在提高特定任务的性能。 引入了小波卷积模块，旨在扩大卷积的感受野并有效捕捉图像中的低频信息。其对多尺度问题和小目标问题上有很好的效果
+
 
 ##方式2：下载源代码
 ==
@@ -48,8 +50,8 @@
 
 
 ## 项目结构
-
-- `yolo11-SPDConv.yaml`: 改造之后的YOLO11-SPDConv网络模型。 路径：ultralytics/cfg/models/11/yolo11-SPDConv.yaml
+- `yolo11-WTConv-SPDConv.yaml`: 改造之后的YOLO11-WTConv-SPDConv网络模型。 路径：ultralytics/cfg/models/11/
+- `yolo11-SPDConv.yaml`: 改造之后的YOLO11-SPDConv网络模型。 路径：ultralytics/cfg/models/11/
 - `NEU-Seg-DataB.yaml`: 训练、验证、测试数据集配置文件。 路径：ultralytics/cfg/datasets/NEU-Seg-DataB.yaml
 - `train.py`: 训练配置路径，可直接运行，也可手动自定义参数配置。  用以训练自己的网络模型 在国赛中使用了 A 和 B 数据集，A 集数据使用在线数据增强，B 集数据采用简单增强策略，以提升模型在不同数据集上的表现。测试使用在线增强的A数据集。
 - `val.py`: 用以验证训练出的模型性能和检测效果
@@ -110,8 +112,23 @@
     
   yolo11-SPDConv 三类缺陷识别准确率  
     #0.746903531487659 0.9001802282767924 0.8444729532801076 -- mIOU 0.830185237348853  
+
+  YOLO11-WTConv-SPDConv vs YOLO11+SPDConv
+  ![image](https://github.com/user-attachments/assets/de56af4e-bf90-41db-804e-11b22ffcd998)
+
+  东北大学UNET-DET钢材表面缺陷数据集上与其它模型进行横向对比，依然有良好的优化效果
+  ![image](https://github.com/user-attachments/assets/619ce5c9-d103-4aa8-b6b3-683abf9ed2d1)
+
+
+  通过
   
 三、yolo11-SPDConv钢材表面缺陷检测技术文档 
+===
+YOLO11+SPD-Con作为参加钢材表面缺陷检测与分割竞赛的解决方案，旨在通过深度学习技术实现高效的钢材表面缺陷检测和分割。
+------- 
+祝贺： 本项目取得全球AI人工智能大赛四川赛区第4名的好成绩成绩，目前成功挺进国赛。 2024-11-4
+祝贺： 本项目取得2024年 第六届全球校园人工智能算法精英大赛 研究生组 国家三等奖。 2024-11-14
+
 -------
    第1章 绪论  
    1.1 研究背景与意义  
